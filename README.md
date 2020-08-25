@@ -1,1 +1,1 @@
-# informatica
+# Introduccion a la informatica
