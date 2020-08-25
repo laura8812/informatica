@@ -1,1 +1,1 @@
-# Introduccion a la informatica
+# Introduccion a la informatica primer semestre
