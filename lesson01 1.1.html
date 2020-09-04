@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Juego 2D: JavaScript - 01, probando el programa</title>
+
+    <!-- Define los estilos de la interfaz visual 
+         padding es la distancia de un objeto en relación con el marco que lo contiene
+         margin es la distancia que separa a un objeto de otro
+         background es el color de fondo
+         display: block; Estos elementos fluyen hacia abajo
+         margin: 0 auto; Centra el canvas en la pantalla -->
+    <style>
+        * { 
+            padding: 0; 
+            margin: 0; 
+        } 
+        canvas { 
+            background:#CB0B39; 
+            display: block; 
+            margin: 0 auto; 
+        }
+    </style>
+
+</head>
+<body>
+
+<canvas id="miCanvas" width="720" height="360"></canvas>
+
+<script>
+
+	///////////////////////////////////////////////////////////////////////////
+    var canvas = document.getElementById("miCanvas");
+
+    // -----------------------------------------------------------------------
+    var ctx = canvas.getContext("2d");
+    // -----------------------------------------------------------------------
+
+    // Coloca x en la mitad del ancho deL CANVAS
+    var x = canvas.width /2;
+
+    // Coloca y en la mitad de la altura del CANVASs (restando 30 a dicho valor)
+    var y = canvas.height -300;
+
+    /* DEFINE LOS INCREMENTOS EN X y en Y. El valor dy es negativo 
+       para que inicialmente el movimiento de la bola sea hacia arriba */
+    var dx = +20;
+    var dy = +10;
+
+    function dibujarBola() {
+        // Inicia el dibujo
+        ctx.beginPath();
+
+        /* Define un círculo en las coordenadas (x, y) con radio 10
+           El ángulo va desde 0 hasta 2*PI (360 grados) */
+        ctx.arc(x, y, 10, 0, Math.PI*2);
+
+        // Color de llenado
+        ctx.fillStyle = "#0BCB9D";
+
+        // Se llena el círculo con el color indicado
+        ctx.fill();
+
+        // Finaliza el dibujo
+        ctx.closePath();
+    }
+
+    /* LA FUNCIÓN dibujar REALIZA TRES TAREAS:
+       1) Limpia el CANVAS. Inicio= (0,0) Ancho=canvas.width Altura=canvas.height
+       2) Dibuja una bola en las coordenadas (x, y)
+       3) Cambiar las coordenadas (x, y) agregando los valores dx, dy
+          Con este cambio cada vez que se dibuja la bola, está en una nueva posición */
+    function dibujar() {
+
+        // Limpia el CANVAS
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Dibuja la bola
+        dibujarBola(  );
+
+        // Se incrementa x en el valor dx
+        x = x + dx;
+
+        // Se incrementa y en el valor dy
+        y = y + dy;
+    }
+ 
+    /* EJECUTA LA FUNCIÓN dibujar CADA 10 MILISEGUNDOS
+       Este es el mecanismo utilizado para construir un sistema que
+       ejecuta acciones de manera permanente y periódica */ 
+    setInterval(dibujar, 25);
+
+</script>
+
+</body>
+</html>
